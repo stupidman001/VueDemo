@@ -2,7 +2,7 @@
   <div class="todo-container">
     <div class="todo-wrap">
       <MyHeader :receive="receive"/>
-      <MyList :todos="todos" />
+      <MyList :todos="todos" :checkTodo="checkTodo" />
       <MyFooter />
     </div>
   </div>
@@ -43,9 +43,20 @@ export default {
     };
   },
   methods:{
+    // 添加一个元素
     receive(item){
       this.todos.unshift(item)
+    },
+    // 勾选 or 取消勾选一个 todo
+    checkTodo(id){
+      this.todos.forEach((todo) => {
+        if(todo.id === id)
+          todo.done = !todo.done
+      })
     }
+
+
+
   }
 };
 </script>
