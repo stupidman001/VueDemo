@@ -1,7 +1,7 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox" />
+      <input type="checkbox" :checked="finish === todos.length && finish > 0" />
     </label>
     <span> <span>已完成{{ finish }}</span> / 全部{{ todos.length }} </span>
     <button class="btn btn-danger">清除已完成任务</button>
@@ -12,12 +12,17 @@
 export default {
   name: "Footer",
   props: ["todos"],
+  data(){
+    return {
+      status:Boolean
+    }
+  },
   computed: {
     finish() {
-      let count = 0;
+      let count = 0
       this.todos.forEach((item) => {
         if(item.done)
-          count++
+            count++
       });
       return count
     },
