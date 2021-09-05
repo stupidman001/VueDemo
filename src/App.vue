@@ -3,7 +3,7 @@
     <div class="todo-wrap">
       <MyHeader :receive="receive"/>
       <MyList :todos="todos" :checkTodo="checkTodo" :deleteItem="deleteItem"/>
-      <MyFooter />
+      <MyFooter :todos="todos" />
     </div>
   </div>
 </template>
