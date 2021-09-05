@@ -5,7 +5,7 @@
         <input type="checkbox" :checked="todo.done" @change="changeStatus(todo.id)"/>
         <span>{{todo.title}}</span>
       </label>
-      <button class="btn btn-danger" style="display: none">删除</button>
+      <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
     </li>
   </div>
 </template>
@@ -13,7 +13,7 @@
 <script>
 export default {
   name: "MyItem",
-  props:['todo','checkTodo'],
+  props:['todo','checkTodo','deleteItem'],
   created(){
     console.log(this.todo)
   },
@@ -21,6 +21,10 @@ export default {
     changeStatus(id){
       // 通知 App 组件将对应的 todo 对象的 done 值取反
       this.checkTodo(id)
+    },
+    // 删除
+    handleDelete(id){
+      this.deleteItem(id)
     }
   }
 };
@@ -60,5 +64,12 @@ li:before {
 
 li:last-child {
   border-bottom: none;
+}
+li:hover button{
+  display:block;
+}
+
+li:hover{
+  background-color:grey;
 }
 </style>

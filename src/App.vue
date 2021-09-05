@@ -2,7 +2,7 @@
   <div class="todo-container">
     <div class="todo-wrap">
       <MyHeader :receive="receive"/>
-      <MyList :todos="todos" :checkTodo="checkTodo" />
+      <MyList :todos="todos" :checkTodo="checkTodo" :deleteItem="deleteItem"/>
       <MyFooter />
     </div>
   </div>
@@ -53,8 +53,13 @@ export default {
         if(todo.id === id)
           todo.done = !todo.done
       })
+    },
+    // 删除一个元素
+    deleteItem(id){
+      this.todos = this.todos.filter((item) =>{
+        return item.id != id
+      })
     }
-
 
 
   }
